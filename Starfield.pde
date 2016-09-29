@@ -22,7 +22,12 @@ void draw()
 		bob[i].move();
 		bob[i].show();
 	}
+}
 
+void mouseClicked() {
+	for (int i = 0; i < bob.length; i++) {
+		bob[i].speed++;
+	}
 }
 class NormalParticle implements Particle
 {
@@ -30,8 +35,8 @@ class NormalParticle implements Particle
 	float myX, myY, angle, speed;
 
 	NormalParticle() {
-		myX = mouseX + (int)(Math.random()*49) - 24;
-		myY = mouseY + (int)(Math.random()*49) - 24;
+		myX = 400 + (int)(Math.random()*49) - 24;
+		myY = 400 + (int)(Math.random()*49) - 24;
 		angle = (float)(Math.PI*2*Math.random());
 		speed = (float)(Math.random()*5)+5;
 
@@ -76,7 +81,7 @@ class OddballParticle implements Particle
 		angle = (float)(Math.PI*2*Math.random());
 		speed = (float)(Math.random()*5)+5;
 
-		myColor = color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255),200);
+		myColor = 255;//color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255),200);
 	}
 
 	public void move() {
@@ -84,12 +89,14 @@ class OddballParticle implements Particle
 		myY = myY + sin(angle)*speed;
 
 		if(myX > 800 || myX < 0) {
-			myY = myX = 400 + (int)(Math.random()*49) - 24;
+			myX = mouseX + (int)(Math.random()*49) - 24;
+			myY = mouseY + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
 			speed = (float)(Math.random()*5)+5;
 		}
 		if(myY > 800 || myY < 0) {
-			myY = myX = 400 + (int)(Math.random()*49) - 24;
+			myX = mouseX + (int)(Math.random()*49) - 24;
+			myY = mouseY + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
 			speed = (float)(Math.random()*5)+5;
 		}
@@ -105,7 +112,7 @@ class JumboParticle extends NormalParticle
 {
 	void show() {
 		fill(myColor);
-		ellipse(myX,myY,20,20);
+		ellipse(myX,myY,30,30);
 	}
 }
 
