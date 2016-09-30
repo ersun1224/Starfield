@@ -8,7 +8,7 @@ void setup()
 	for (int i = 0; i < bob.length; i++) {
 		bob[i] = new NormalParticle();
 	}
-	for (int i = 495; i < bob.length; i++) {
+	for (int i = bob.length-5; i < bob.length; i++) {
 		bob[i] = new OddballParticle();
 	}
 	for(int i = 0; i < 5; i++) {
@@ -17,17 +17,18 @@ void setup()
 }
 void draw()
 {
-	background(0);
+	fill(0,0,0,100);
+	rect(0,0,800,800);
 	for (int i = 0; i < bob.length; i++) {
 		bob[i].move();
 		bob[i].show();
 	}
 }
 
-void mouseClicked() {
-	for (int i = 0; i < bob.length; i++) {
-		bob[i].speed++;
-	}
+void mousePressed() {
+	//for (int i = 0; i < bob.length; i++) {
+	//	bob[i].speed = 2;
+	//}
 }
 class NormalParticle implements Particle
 {
@@ -61,7 +62,7 @@ class NormalParticle implements Particle
 
 	public void show() {
 		fill(myColor);
-		ellipse(myX,myY,8,8);
+		ellipse(myX,myY,3,3);
 	}
 
 }
@@ -81,7 +82,7 @@ class OddballParticle implements Particle
 		angle = (float)(Math.PI*2*Math.random());
 		speed = (float)(Math.random()*5)+5;
 
-		myColor = 255;//color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255),200);
+		myColor = 255;
 	}
 
 	public void move() {
@@ -104,7 +105,7 @@ class OddballParticle implements Particle
 
 	public void show() {
 		fill(myColor);
-		rect(myX,myY,50,50);
+		ellipse(myX,myY,50,50);
 
 	}
 }
