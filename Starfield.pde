@@ -1,5 +1,5 @@
 Particle [] bob;
-int speedBoost = 0;
+float speedBoost = 0;
 
 
 void setup()
@@ -27,7 +27,7 @@ void draw()
 }
 
 void mousePressed() {
-	speedBoost++;
+	speedBoost = ((float)(speedBoost+Math.random()));
 }
 class NormalParticle implements Particle
 {
@@ -79,9 +79,9 @@ class OddballParticle implements Particle
 		myX = 400 + (int)(Math.random()*49) - 24;
 		myY = 400 + (int)(Math.random()*49) - 24;
 		angle = (float)(Math.PI*2*Math.random());
-		speed = (float)(Math.random()*5+5+speedBoost);
+		speed = (float)(Math.random()*5+25+speedBoost);
 
-		myColor = color(255,255,255,50);
+		myColor = color(255,255,255,50-(int)(speedBoost/2));
 	}
 
 	public void move() {
@@ -92,13 +92,13 @@ class OddballParticle implements Particle
 			myX = mouseX + (int)(Math.random()*49) - 24;
 			myY = mouseY + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
-			speed = (float)(Math.random()*5+5);
+			speed = (float)(Math.random()*5+25+(speedBoost/5));
 		}
 		if(myY > 800 || myY < 0) {
 			myX = mouseX + (int)(Math.random()*49) - 24;
 			myY = mouseY + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
-			speed = (float)(Math.random()*5+5);
+			speed = (float)(Math.random()*5+25+(speedBoost/5));
 		}
 	}
 
