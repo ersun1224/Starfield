@@ -5,14 +5,14 @@ float speedBoost = 0;
 void setup()
 {
 	size(800,800);
-	bob = new Particle[1000];
+	bob = new Particle[2000];
 	for (int i = 0; i < bob.length; i++) {
 		bob[i] = new NormalParticle();
 	}
-	for (int i = bob.length-5; i < bob.length; i++) {
+	for (int i = bob.length-1; i < bob.length; i++) {
 		bob[i] = new OddballParticle();
 	}
-	for(int i = bob.length-10; i < bob.length-5; i++) {
+	for(int i = bob.length-3; i < bob.length-1; i++) {
 		bob[i] = new JumboParticle();
 	}
 }
@@ -48,12 +48,15 @@ class NormalParticle implements Particle
 		myY = myY + sin(angle)*speed;
 
 		if(myX > 800 || myX < 0) {
-			myY = myX = 400 + (int)(Math.random()*49) - 24;
+			myX = 400 + (int)(Math.random()*49) - 24;
+			myY = 400 + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
 			speed = (float)(Math.random()*5+5+speedBoost);
+
 		}
 		if(myY > 800 || myY < 0) {
-			myY = myX = 400 + (int)(Math.random()*49) - 24;
+			myX = 400 + (int)(Math.random()*49) - 24;
+			myY = 400 + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
 			speed = (float)(Math.random()*5+5+speedBoost);
 		}
@@ -92,13 +95,13 @@ class OddballParticle implements Particle
 			myX = mouseX + (int)(Math.random()*49) - 24;
 			myY = mouseY + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
-			speed = (float)(Math.random()*5+25+(speedBoost/5));
+			speed = (float)(Math.random()*5+(speedBoost/5));
 		}
 		if(myY > 800 || myY < 0) {
 			myX = mouseX + (int)(Math.random()*49) - 24;
 			myY = mouseY + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
-			speed = (float)(Math.random()*5+25+(speedBoost/5));
+			speed = (float)(Math.random()*5+(speedBoost/5));
 		}
 	}
 
@@ -110,19 +113,26 @@ class OddballParticle implements Particle
 }
 class JumboParticle extends NormalParticle
 {
+	JumboParticle() {
+		speed = (float)(Math.random()+2+speedBoost);
+	}
 	public void move() {
 		myX = myX + cos(angle)*speed;
 		myY = myY + sin(angle)*speed;
 
 		if(myX > 800 || myX < 0) {
-			myY = myX = 400 + (int)(Math.random()*49) - 24;
+			myX = 400 + (int)(Math.random()*49) - 24;
+			myY = 400 + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
-			speed = (float)(Math.random()*3+2+speedBoost);
+			speed = (float)(Math.random()+2+speedBoost);
+			myColor = color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255),200);
 		}
 		if(myY > 800 || myY < 0) {
-			myY = myX = 400 + (int)(Math.random()*49) - 24;
+			myX = 400 + (int)(Math.random()*49) - 24;
+			myY = 400 + (int)(Math.random()*49) - 24;
 			angle = (float)(Math.PI*2*Math.random());
-			speed = (float)(Math.random()*3+2+speedBoost);
+			speed = (float)(Math.random()+2+speedBoost);
+			myColor = color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255),200);
 		}
 	}
 	public void show() {
